@@ -1,5 +1,5 @@
+import 'package:click_fare/Utils/resources/res/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hrm_project/Utils/resources/res/app_theme.dart';
 
 showLogOutALert(BuildContext context, {controller}) {
   return showDialog(

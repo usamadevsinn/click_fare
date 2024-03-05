@@ -1,9 +1,8 @@
 
+import 'package:click_fare/Utils/resources/res/app_theme.dart';
+import 'package:click_fare/Utils/widgets/others/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hrm_project/Utils/resources/res/app_theme.dart';
-import 'package:hrm_project/Utils/widgets/others/app_text.dart';
-
 class AppButton {
   static Widget appButton(String text,
       {double? height,
@@ -40,7 +39,7 @@ class AppButton {
                   : BoxShadow()
             ],
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(8),
             border: border == false
                 ? null
                 : Border.all(color: AppTheme.appColor, width: 1)),

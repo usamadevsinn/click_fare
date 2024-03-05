@@ -1,9 +1,7 @@
+import 'package:click_fare/Utils/resources/res/app_theme.dart';
+import 'package:click_fare/Utils/widgets/others/app_text.dart';
+import 'package:click_fare/config/keys/pref_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:hrm_project/Utils/resources/res/app_theme.dart';
-import 'package:hrm_project/Utils/utils.dart';
-import 'package:hrm_project/Utils/widgets/others/app_text.dart';
-import 'package:hrm_project/View/Auth/sign_in_screen.dart';
-import 'package:hrm_project/config/keys/pref_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -45,8 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color.fromARGB(255, 234, 188, 183),   
-              Color.fromARGB(255, 243, 217, 214),   // Top color
+              Color.fromARGB(255, 234, 188, 183),
+              Color.fromARGB(255, 243, 217, 214), // Top color
               // Top color
               Color(0xCCD4E9EA), // Bottom color
             ],
@@ -67,7 +65,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   SizedBox(
                     width: 200,
                     height: 100,
-                    child: Image.asset("assets/images/hrm_logo.png",),
+                    child: Image.asset(
+                      "assets/images/hrm_logo.png",
+                    ),
                   ),
                   AppText.appText("End-to-end Digital Solutions")
                 ],

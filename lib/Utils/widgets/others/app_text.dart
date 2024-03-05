@@ -1,5 +1,5 @@
+import 'package:click_fare/Utils/resources/res/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hrm_project/Utils/resources/res/app_theme.dart';
 
 class AppText {
   static Widget  appText(String text,
@@ -27,7 +27,7 @@ class AppText {
           overflow: overflow,
           fontStyle: fontStyle,
           textBaseline: textBaseline,
-          decorationColor: AppTheme.appColor,
+          decorationColor: AppTheme.primary,
           decoration: underLine == false
               ? TextDecoration.none
               : TextDecoration.underline),

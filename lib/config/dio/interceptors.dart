@@ -1,10 +1,10 @@
 
+import 'package:click_fare/Constants/app_logger.dart';
+import 'package:click_fare/config/app_urls.dart';
+import 'package:click_fare/config/keys/headers.dart';
+import 'package:click_fare/config/keys/pref_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hrm_project/Constants/app_logger.dart';
-import 'package:hrm_project/config/app_urls.dart';
-import 'package:hrm_project/config/keys/headers.dart';
-import 'package:hrm_project/config/keys/pref_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:req_fun/req_fun.dart';
 
