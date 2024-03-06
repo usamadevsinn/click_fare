@@ -8,22 +8,23 @@ class AppTheme {
   static Color whiteColor = Colors.white;
   static Color white = Colors.white;
 
+}
 
-  // static const Color primaryColorLite = Color(0xff65FF8F);
-  // static const Color primarySwatchColor = Color(0xff36F12C);
-  // static final Color primaryDarkColor = Colors.green[700]!;
-  // static const Color ratingGreyColor = Color(0xffDADADA);
-  // static const Color ratingYellowColor = Color(0xffF4DD06);
-  // static const Color addButtonColor = Color(0xff4CAF50);
-  // static const Color whiteColor = Color(0xffFFFFFF);
-  // static const Color yellowColor = Color(0xffF4DD06);
-  // static Color appColorLight = const Color(0xFFFB8080);
+Color hexToColor(String hex) {
+  assert(RegExp(r'^#([0-9a-fA-F]{6})|([0-9a-fA-F]{8})$').hasMatch(hex),
+      'hex color must be #rrggbb or #rrggbbaa');
 
-  // static final ThemeData appThemeData = ThemeData(
-  //   fontFamily: 'WorkSans',
-  //   brightness: Brightness.light,
-  //   primarySwatch: Colors.green,
-  //   primaryColor: primaryColor,
-  //   primaryColorDark: primaryColorLite,
-  // );
+  return Color(
+    int.parse(hex.substring(1), radix: 16) +
+        (hex.length == 7 ? 0xff000000 : 0x00000000),
+  );
+}
+
+class MyColors {
+  static Color lightScaffoldBackgroundColor = hexToColor('#F9F9F9');
+  static Color darkScaffoldBackgroundColor = hexToColor('#2F2E2E');
+  static Color secondaryAppColor = Colors.white;
+  static Color secondaryDarkAppColor = Colors.white;
+  static Color fareIconsColor = const  Color.fromARGB(255, 218, 210, 231);
+  
 }

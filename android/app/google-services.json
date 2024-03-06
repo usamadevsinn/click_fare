@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981335290628",
+    "project_id": "clickfare-37fe5",
+    "storage_bucket": "clickfare-37fe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981335290628:android:eeb470625d4981312c5651",
+        "android_client_info": {
+          "package_name": "com.example.click_fare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlPTOCjhMhBtqF9NTmYxAzQx1FW_WvIuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

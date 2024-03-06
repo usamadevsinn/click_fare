@@ -4,7 +4,9 @@ import 'package:click_fare/Utils/widgets/others/app_button.dart';
 import 'package:click_fare/Utils/widgets/others/app_field.dart';
 import 'package:click_fare/Utils/widgets/others/app_text.dart';
 import 'package:click_fare/View/auth/sign_up_screen.dart';
+import 'package:click_fare/View/root_screen.dart';
 import 'package:country_list_pick/country_list_pick.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -15,12 +17,35 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  Future<void> signInWithEmailAndPassword(
+      {String? email, String? password}) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email!,
+        password: password!,
+      );
+      pushUntil(context, const RootScreen());
+    } catch (e) {
+      print("Error occurred: $e");
+      // Explicitly specify the type of the exception object
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          print('No user found with this email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for this user.');
+        } else {
+          showSnackBar(context, "Credential is incorrect");
+        }
+      } else {
+        print('An unexpected error occurred: $e');
+      }
+    }
+  }
 
   @override
   void initState() {
-    _phoneController.text = "+92";
     super.initState();
   }
 
@@ -55,12 +80,26 @@ class _SignInScreenState extends State<SignInScreen> {
                 buttontext: "Sign In",
                 bottomText: "Don't have an account?",
                 bottomTxt2: "Sign Up",
+                buttonOntap: () {
+                  if (_emailController.text.isNotEmpty) {
+                    if (_passwordController.text.isNotEmpty) {
+                      signInWithEmailAndPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text);
+                    } else {
+                      showSnackBar(context, "Enter Password");
+                    }
+                  } else {
+                    showSnackBar(context, "Enter email");
+                  }
+                },
                 ontap: () {
                   push(context, const SignUpScreen());
                 },
                 child: Column(
                   children: [
-                    phoneField(controller: _phoneController),
+                    CustomAppFormField(
+                        texthint: "Enter Email", controller: _emailController),
                     const SizedBox(
                       height: 20,
                     ),
@@ -193,6 +232,7 @@ class _AuthContainerState extends State<AuthContainer> {
                     child: widget.child),
                 AppButton.appButton("${widget.buttontext}",
                     backgroundColor: AppTheme.primary,
+                    onTap: widget.buttonOntap,
                     textColor: AppTheme.whiteColor,
                     height: 40,
                     width: 100,

@@ -1,78 +1,64 @@
-import 'package:click_fare/Utils/resources/res/app_theme.dart';
-import 'package:click_fare/Utils/widgets/others/app_text.dart';
-import 'package:click_fare/config/keys/pref_keys.dart';
+// ignore_for_file: file_names
+
+import 'dart:async';
+import 'package:click_fare/View/OnBoard%20Screen/on_board_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  // ignore: library_private_types_in_public_api
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+  late Animation colorAnimation;
+
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 4), () {
-      // getUserCredentials(context);
-      // pushReplacement(context, const SignInScreen());
+    super.initState();
+
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => const OnBoardScreen()));
     });
     super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animation = Tween<double>(begin: 150, end: 300).animate(controller);
+    // colorAnimation =
+    //     ColorTween(begin: kprimayColor, end: primayColor).animate(controller);
+    animation.addListener(() {
+      setState(() {});
+    });
+    controller.forward();
   }
 
-  void getUserCredentials(context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    String? token = prefs.getString(PrefKey.authorization);
-
-    if (token != null && token.isNotEmpty) {
-      // pushReplacement(context, BottomNavView());
-    } else {
-      // pushReplacement(context, const SignInScreen());
-    }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.appColor,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color.fromARGB(255, 234, 188, 183),
-              Color.fromARGB(255, 243, 217, 214), // Top color
-              // Top color
-              Color(0xCCD4E9EA), // Bottom color
-            ],
-          ),
-        ),
-        child: Center(
-          child: TweenAnimationBuilder(
-            tween: Tween<double>(
-              begin: 50.0,
-              end: 500.0,
-            ),
-            duration: const Duration(seconds: 3),
-            curve: Curves.easeInToLinear,
-            builder: (context, val, child) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 200,
-                    height: 100,
-                    child: Image.asset(
-                      "assets/images/hrm_logo.png",
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Container(
+            height: animation.value,
+            width: animation.value,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/logo.png',
                     ),
-                  ),
-                  AppText.appText("End-to-end Digital Solutions")
-                ],
-              );
-            },
+                    fit: BoxFit.fitWidth)),
           ),
         ),
       ),

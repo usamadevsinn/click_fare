@@ -1,8 +1,7 @@
-
 import 'package:click_fare/Utils/resources/res/app_theme.dart';
 import 'package:click_fare/Utils/widgets/others/app_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 class AppButton {
   static Widget appButton(String text,
       {double? height,
@@ -112,71 +111,6 @@ class AppButton {
                 textBaseline: textBaseline,
                 fontStyle: fontStyle,
                 underLine: underLine),
-          ],
-        ),
-      ),
-    );
-  }
-
-  static Widget appButtonWithLeadingImage(String text,
-      {double? height,
-      double? width,
-      Color? backgroundColor,
-      EdgeInsetsGeometry? padding,
-      TextAlign? textAlign,
-      Color? textColor,
-      double? fontSize,
-      FontWeight? fontWeight,
-      FontStyle? fontStyle,
-      TextBaseline? textBaseline,
-      TextOverflow? overflow,
-      double? letterSpacing,
-      IconData? icons,
-      Function()? onTap,
-      String? imagePath,
-      bool underLine = false,
-      bool fontFamily = false,
-      bool? border}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: padding,
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(50),
-            border: border == false
-                ? null
-                : Border.all(
-                    color: AppTheme.appColor,
-                    width: 2,
-                  )),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            // Image(
-            //   // image: AssetImage(imagePath!),
-            //   image:
-              SvgPicture.asset(
-                imagePath!,
-                height: 25,),
-            //   height: 25,
-            // ),
-            AppText.appText(text,
-                fontFamily: fontFamily,
-                fontSize: fontSize,
-                textAlign: textAlign,
-                fontWeight: fontWeight,
-                textColor: textColor,
-                overflow: overflow,
-                letterSpacing: letterSpacing,
-                textBaseline: textBaseline,
-                fontStyle: fontStyle,
-                underLine: underLine),
-            SizedBox(
-              width: 20,
-            ),
           ],
         ),
       ),
